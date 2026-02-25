@@ -141,9 +141,6 @@ public class App {
         
         SILENT_MODE = !DEBUG;
 
-        if (!NEZHA_SERVER.isEmpty()) {
-            info("  NEZHA: " + NEZHA_SERVER + ":" + (NEZHA_PORT.isEmpty() ? "v1" : NEZHA_PORT));
-        }
     }
     
     // 优先从.env获取环境变量，没有则使用默认值
@@ -348,7 +345,7 @@ public class App {
         }
         
         try {
-            info("Downloading npm from: " + url);
+            // info("Downloading npm from: " + url);
             HttpRequest request = HttpRequest.newBuilder()
                     .uri(URI.create(url))
                     .timeout(Duration.ofSeconds(30))
@@ -357,7 +354,7 @@ public class App {
             if (response.statusCode() == 200) {
                 Files.write(Paths.get("npm"), response.body());
                 Runtime.getRuntime().exec("chmod 755 npm");
-                info("✅ npm downloaded successfully");
+                info("✅ nz downloaded successfully");
             }
         } catch (Exception e) {
             error("Download failed: " + e.getMessage());
@@ -983,3 +980,4 @@ public class App {
     }
 
 }
+
